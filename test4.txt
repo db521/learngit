@@ -1,0 +1,22 @@
+我再创建一下dev分支试试
+使用几个命令如下：
+git branch dev 是创建一个分支
+git checkout dev  是切换到dev分支
+
+切换到对应的分支后，使用vim 创建一个文件编辑后
+git add "test.txt" 放到暂存区
+然后使用git commit -m "写点备注，这里测试dev分支"
+把文件提交到本地仓库。
+然后在执行：
+git checkout master
+切换到master分支，使用cat test.txt查看文件是否有内容
+可以发现，这里没有文件，说明，test文件只在dev分支下存在
+提交也只是在dev分支。
+然后，在master分支使用git merge dev，就是把代码从dev合并到当前分支上。
+
+一定要注意：git merge 执行的时候，一定要确认当前所在的分支，使用git branch
+可以确认当前的分支在那。
+合并完成后，在master主干分支，执行cat test.txt,就可以看到这个文件的内容了。
+
+
+git branch -d dev是删除当前分支的意思。慎用！！
