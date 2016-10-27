@@ -28,3 +28,65 @@ git branch -d dev是删除当前分支的意思。慎用！！
 
 ------------------------
 莫名其妙，多了一个文件，合并到master竟然说没有了。
+
+
+-----------------------
+最后就解决了。
+现场是：master分支有一个文件修改了。feature分支也修改过同样的文件。
+然后在master分支合并feature过来的时候，就报冲突错误了。
+----------
+解决方式：在master分支，先使用git merge feature,
+准备merge feature分支的代码过来。
+这个时候报错， 
+使用git status方式，查看当前的问题。
+查看到问题后，删掉了master分支的文件，然后使用
+git add test4.txt文件。
+然后再git commit -m "弄个文件"，方式把文件提交了。
+这个时候，再git status查看，就没有冲突了
+
+
+
+admin@zhangdelong MINGW64 /d/learngit (master|MERGING)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+  You have unmerged paths.
+    (fix conflicts and run "git commit")
+
+    Unmerged paths:
+      (use "git add/rm <file>..." as appropriate to mark resolution)
+
+              deleted by us:   test4.txt
+
+	      no changes added to commit (use "git add" and/or "git commit -a")
+
+	      admin@zhangdelong MINGW64 /d/learngit (master|MERGING)
+	      $ git add test4.txt
+
+	      admin@zhangdelong MINGW64 /d/learngit (master|MERGING)
+	      
+
+		      $ git status
+			      On branch master
+			      Your branch is ahead of 'origin/master' by 4 commits.
+			        (use "git push" to publish your local commits)
+				All conflicts fixed but you are still merging.
+				  (use "git commit" to conclude merge)
+
+				  Changes to be committed:
+
+				          new file:   test4.txt
+
+
+					  admin@zhangdelong MINGW64 /d/learngit (master|MERGING)
+					  $ git commit -m "解决了冲突"
+					  [master 10ee7ed] 解决了冲突
+
+					  admin@zhangdelong MINGW64 /d/learngit (master)
+					  $ git status
+					  On branch master
+					  Your branch is ahead of 'origin/master' by 6 commits.
+					    (use "git push" to publish your local commits)
+					    nothing to commit, working directory clean
+
