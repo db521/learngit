@@ -1,1 +1,9 @@
-asdasdasdasd
+git本地如果已经使用了http的方式进行上传下载
+要切换的话，可以直接编辑.git/config文件里面的
+url配置路径为github上的git类型地址。
+比如：git@github.com:db521/learngit.git
+改完，直接回到master目录下，直接运行：
+git push origin master 
+可以直接把内容通过SSH的方式，上传到github的服务器了。
+不用在通过HTTPS方式了，因为HTTPS每次都要输入用户名和密码。
+真是痛苦。
