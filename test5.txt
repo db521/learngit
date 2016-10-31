@@ -1,0 +1,34 @@
+我现在是dev 分支，我这里做半截了，需要切换到master101分支
+然后在101分支上修改代码。修改完成后，再切换到dev分支。
+
+
+我整个过程是这样的：
+vim test5.txt------这个文件在dev分支上，改半截了，内容如上。
+
+git status---------查看当前dev上修改的文件状态，没有提交
+
+git stash----------把本地的没有提交到服务器的文件隐藏一下。
+
+git checkout master---------切换到master分支，准备拉小分支
+git checkout -b "master-bug-fix-1.0.1"-------创建并进入到小分支
+vim bug-fix.txt--------创建bug-fix的文件，进行修复
+git add bug-fix.txt---------保存到暂存区
+git commit -m "master分支的bug-fix代码"------------提交到本地服务器
+git checkout master---------切换到master分支，准备合并小分支代码
+git merge --no-ff -m "合并bug-fix小分支的代码" master-bug-fix-1.0.1-----合并小分支的代码
+
+git checkout dev------------切换到dev分支，继续在dev分支上改代码
+
+git status--------查看当前master分支下的文件状态，目前是clean
+
+git stash list-----------查看已经隐藏的文件，就是test5.txt文件。
+
+git stash apply--------显示已经隐藏的文件，可以看到test5.txt文件了
+
+cat test5.txt-----------可以看到修改半截的文件
+
+git stash drop--------会删除掉之前隐藏的类似历史备份
+
+vim test5.txt------------没事了，可以继续在dev分支，test5.txt继续修改了。
+
+
